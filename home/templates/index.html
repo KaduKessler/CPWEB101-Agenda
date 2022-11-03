@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Desenvolvimento Web - TI</title>
-</head>
-<body>
-    <h1>Index</h1>
-    <h2>{{ disciplina }}</h2>
-    <h2>{{ tecnologia }}</h2>
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<section class="hero is-link is-spaced has-background-primary-dark">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <h1 class="title is-size-1">LavaCar</h1>
+            <p class="title is-size-1">Agendamento de Horários</p>
+            <p class="subtitle is-size-4">Sistema para agendamento de horários</p>
+        </div>
+    </div>
+</section>
+{% block registros %}
+{% include "registros.html" %}
+{% endblock %}
+
+{% endblock %}
