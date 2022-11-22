@@ -13,6 +13,7 @@ class ProdutoServicoInLine(admin.TabularInline):
 class ServicoAdmin(admin.ModelAdmin):
     list_display = ['nome', 'descricao', 'preco', 'get_produtos']
     inlines = [ProdutoServicoInLine]
+    search_fields = ('nome', 'descricao')
 
     def get_produtos(self, obj):
         return ', '.join(([prd.nome for prd in Produto.objects.filter(servico=obj.id)]))
