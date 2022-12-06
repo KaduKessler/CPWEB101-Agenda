@@ -15,6 +15,7 @@ class Servico(models.Model):
     class Meta:
         verbose_name = 'Serviço'
         verbose_name_plural = 'Serviços'
+        ordering = ['nome', ]
 
     def __str__(self):
         return self.nome

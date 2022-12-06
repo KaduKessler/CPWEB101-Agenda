@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.views.generic import ListView
 from cliente.models import Cliente
 
@@ -13,4 +14,8 @@ class ClientesView(ListView):
 
         if buscar:
             qs = qs.filter(nome__icontains=buscar)
-        return qs
+        
+        #return qs
+        paginator = Paginator(qs, 5)
+        listagem = paginator.get_page(self.request.GET.get('page'))
+        return listagem

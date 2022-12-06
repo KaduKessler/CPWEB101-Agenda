@@ -8,6 +8,7 @@ class Funcionario(Pessoa):
     class Meta:
         verbose_name = 'Funcionario'
         verbose_name_plural = 'Funcionarios'
+        ordering = ['nome', ]
 
     def __str__(self):
         return super().nome

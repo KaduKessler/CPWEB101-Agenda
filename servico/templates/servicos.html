@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <section class="section has-background-link-light">
+        <div class="container">
+
+            <form action="" method="GET">
+                <div class="field is-grouped is-flex is-align-items-center is-flex-wrap-warp">
+                    <label class="label p-2 mt-2">
+                        Nome ou descrição do Serviço:
+                    </label>
+                    <div class="control is-expanded">
+                        <input class="input" type="text" name="buscar" value="{{ request.GET.buscar }}"
+                               placeholder="Digite o nome ou a descrição do serviço">
+                    </div>
+                    <div class="control">
+                        <button type="submit" class="button is-link">Buscar</button>
+                    </div>
+                </div>
+            </form>
+
+            {% if object_list %}
+                <div style="text-align: center;"><h1 class="subtitle is-size-4">Serviços Cadastrados</h1></div>
+                <div class="table">
+                    <table class="table is-table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                        <thead>
+                        <tr>
+                            <th class="has-text-centered">Nome</th>
+                            <th class="has-text-centered">Descrição</th>
+                            <th class="has-text-centered">Preço</th>
+                            <th class="has-text-centered">Produtos</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for servico in object_list %}
+                                <tr>
+                                    <td>{{ servico.nome }}</td>
+                                    <td>{{ servico.descricao }}</td>
+                                    <td> {{servico.preco}} </td>
+                                    <td>
+                                        {% for produto in servico.produtos %}
+                                            {% if forloop.last %}
+                                                {{ produto }}
+                                            {% else %}
+                                                {{ produto }},
+                                            {% endif %}
+                                        {% endfor %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <h2>Não existem serviços cadastrados!</h2>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}
