@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+{% block head %}
+{% include "head.html" %}
+{% endblock %}
+<body>
+<div class="container has-text-centered">
+  <h1 class="title is-size-1">
+    Sistema de Agendamento
+  </h1>
+</div>
+<section class="section has-background-link-light">
+  {% if object_list %}
+  <div style="..."><h1 class="subtitle is-size-4">Produtos Cadastrados</h1></div>
+  <div class="table">
+    <table class="table is-table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+      <thead>
+      <tr>
+        <th class="has-text-centered">Nome</th>
+        <th class="has-text-centered">Quantidade</th>
+        <th class="has-text-centered">Preço</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for produto in object_list %}
+      <tr>
+        <td>{{ produto.nome }}</td>
+        <td> {{ produto.preco }}</td>
+        <td> {{ produto.quantidade }}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <h2>Não existem produtos cadastrados!</h2>
+  {% endif %}
+</section>
+</body>
+</html>

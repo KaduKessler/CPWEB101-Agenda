@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator
 from django.views.generic import ListView
 from produto.models import Produto
-
+from home.utils import HtmlToPdf
 
 # Create your views here.
 class ProdutosView(ListView):
@@ -18,3 +18,11 @@ class ProdutosView(ListView):
         paginator = Paginator(qs, 1)
         listagem = paginator.get_page(self.request.GET.get('page'))
         return listagem
+
+    def get(self, *args, **kwargs):
+        if self.request.GET.get('imprimir') == 'pdf':
+            html_pdf = HtmlToPdf(arquivo='produtos_pdf', qs=self.get_queryset())
+            return html_pdf.response
+        else:
+            return super(ProdutosView, self).get(*args, **kwargs)
+

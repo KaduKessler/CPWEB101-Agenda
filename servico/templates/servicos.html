@@ -4,7 +4,8 @@
     <section class="section has-background-link-light">
         <div class="container">
 
-            <form action="" method="GET">
+            <form id="formListaServicos" action="" method="GET">
+                <input type="hidden" name="imprimir" id="imprimir" value="">
                 <div class="field is-grouped is-flex is-align-items-center is-flex-wrap-warp">
                     <label class="label p-2 mt-2">
                         Nome ou descrição do Serviço:
@@ -14,8 +15,17 @@
                                placeholder="Digite o nome ou a descrição do serviço">
                     </div>
                     <div class="control">
-                        <button type="submit" class="button is-link">Buscar</button>
+                        <button type="submit" class="button is-link" onclick="geraPdf('', 'formListaServicos');">
+                            Buscar
+                        </button>
                     </div>
+                    {% if object_list %}
+                    <div class="control">
+                        <button type="submit" class="button is-link" onclick="geraPdf('pdf', 'formListaServicos');">
+                            Imprimir
+                        </button>
+                    </div>
+                    {% endif %}
                 </div>
             </form>
 

@@ -1,4 +1,6 @@
 from django.views.generic import ListView
+
+from home.utils import HtmlToPdf
 from .forms import AtendimentoListForm
 from .models import Atendimento
 
@@ -42,3 +44,10 @@ class AtendimentoView(ListView):
                     qs = qs.filter(situacao__icontains=situacao)
 
         return qs
+
+    def get(self, *args, **kwargs):
+        if self.request.GET.get('imprimir') == 'pdf':
+            html_pdf = HtmlToPdf(arquivo='atendimentos_pdf', qs=self.get_queryset())
+            return html_pdf.response
+        else:
+            return super(AtendimentoView, self).get(*args, **kwargs)

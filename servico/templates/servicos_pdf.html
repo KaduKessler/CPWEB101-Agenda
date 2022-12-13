@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+{% block head %}
+{% include "head.html" %}
+{% endblock %}
+<body>
+<div class="container has-text-centered">
+  <h1 class="title is-size-1">
+    Sistema de Agendamento
+  </h1>
+</div>
+<section class="section has-background-link-light">
+  {% if object_list %}
+  <div style="text-align: center;"><h1 class="subtitle is-size-4">Serviços Cadastrados</h1></div>
+  <div class="table">
+    <table class="table is-table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+      <thead>
+      <tr>
+        <th class="has-text-centered">Nome</th>
+        <th class="has-text-centered">Descrição</th>
+        <th class="has-text-centered">Preço</th>
+        <th class="has-text-centered">Produtos</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for servico in object_list %}
+      <tr>
+        <td>{{ servico.nome }}</td>
+        <td>{{ servico.descricao }}</td>
+        <td> {{servico.preco}} </td>
+        <td>
+          {% for produto in servico.produtos %}
+          {% if forloop.last %}
+          {{ produto }}
+          {% else %}
+          {{ produto }},
+          {% endif %}
+          {% endfor %}
+        </td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <h2>Não existem serviços cadastrados!</h2>
+  {% endif %}
+</section>
+</body>
+</html>
