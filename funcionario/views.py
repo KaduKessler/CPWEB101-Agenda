@@ -1,4 +1,7 @@
-from django.views.generic import ListView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView
+
+from funcionario.forms import FuncionarioModelForm
 from funcionario.models import Funcionario
 from home.utils import HtmlToPdf
 
@@ -21,3 +24,9 @@ class FuncionariosView(ListView):
             return html_pdf.response
         else:
             return super(FuncionariosView, self).get(*args, **kwargs)
+
+class FuncionarioAddView(CreateView):
+    form_class = FuncionarioModelForm
+    model = Funcionario
+    template_name = 'funcionario_form.html'
+    success_url = reverse_lazy('funcionarios')
