@@ -1,5 +1,5 @@
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 from funcionario.forms import FuncionarioModelForm
 from funcionario.models import Funcionario
@@ -29,4 +29,15 @@ class FuncionarioAddView(CreateView):
     form_class = FuncionarioModelForm
     model = Funcionario
     template_name = 'funcionario_form.html'
+    success_url = reverse_lazy('funcionarios')
+
+class FuncionarioUpDateView(UpdateView):
+    form_class = FuncionarioModelForm
+    model = Funcionario
+    template_name = 'funcionario_form.html'
+    success_url = reverse_lazy('funcionarios')
+
+class FuncionarioDeleteView(DeleteView):
+    model = Funcionario
+    template_name = 'funcionario_apagar.html'
     success_url = reverse_lazy('funcionarios')

@@ -38,6 +38,7 @@
                             <th class="has-text-centered">Nome</th>
                             <th class="has-text-centered">Fone</th>
                             <th class="has-text-centered">E-mail</th>
+                            <th class="has-text-centered" style="width: 100px;">Ações</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -48,6 +49,20 @@
                                     {{ funcionario.nome }} </a></td>
                                 <td> {{ funcionario.fone }}</td>
                                 <td> {{ funcionario.email }}</td>
+                                <td> {{ funcionario.funcao }}</td>
+                                <td class="has-text-centered is-flex is-flex-wrap-nowrap is-justify-content-center">
+                                    <a href="{% url 'funcionario_editar' funcionario.pk %}">
+                                        <span class="icon">
+                                            <i class="fas fa-edit"></i>
+                                        </span>
+                                    </a>
+
+                                    <a href="{% url 'funcionario_apagar' funcionario.pk %}">
+                                        <span class="icon">
+                                            <i class="far fa-trash-alt"></i>
+                                        </span>
+                                    </a>
+                                </td>
                                 <div class="modal" id="modal{{ funcionario.id }}">
                                     <div class="modal-background"></div>
                                     <div class="modal-card">
